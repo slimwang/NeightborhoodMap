@@ -1,0 +1,23 @@
+{
+  "name": "nmproject",
+  "version": "1.0.0",
+  "description": "Neighborhood Map Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slimwang/NeightborhoodMap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slimwang/NeightborhoodMap/issues"
+  },
+  "homepage": "https://github.com/slimwang/NeightborhoodMap#readme"
+}

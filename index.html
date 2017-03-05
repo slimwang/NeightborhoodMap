@@ -57,21 +57,31 @@
                 },
                 zoom: 11
             });
-            var hebut = {
-                lat: 39.178595,
-                lng: 117.173422
-            };
-            var marker = new google.maps.Marker({
-                position: hebut,
-                map: map,
-                title: "hebei university of technology"
+
+            universities.forEach(function(university) {
+                // console.log(university.title);
+
+                var marker = new google.maps.Marker({
+                    position: university.position,
+                    map: map,
+                    title: university.title
+                });
             });
-            var infowindow = new google.maps.InfoWindow({
-                content: "My university!"
-            });
-            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            })
+            // var hebut = {
+            //     lat: 39.178595,
+            //     lng: 117.173422
+            // };
+            // var marker = new google.maps.Marker({
+            //     position: hebut,
+            //     map: map,
+            //     title: "hebei university of technology"
+            // });
+            // var infowindow = new google.maps.InfoWindow({
+            //     content: "My university!"
+            // });
+            // marker.addListener('click', function() {
+            //     infowindow.open(map, marker);
+            // })
         }
     </script>
     <!-- Aboard -->

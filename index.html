@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title">
     <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
+    <link rel="icon" href="data:,">
     <title>Neighborhood Map</title>
 </head>
 
@@ -35,10 +36,9 @@
                         </div>
                         <button type="button" name="filter" class="btn btn-primary"><span class="glyphicon glyphicon-filter"></span>Filter</button>
                     </li>
-                    <li><a href="#">Spot 1</a></li>
-                    <li><a href="#">Spot 2</a></li>
-                    <li><a href="#">Spot 3</a></li>
-                    <li><a href="#">Spot 4</a></li>
+                    <!-- ko foreach: universities -->
+                    <li><a href="#" data-bind="text: $data.title">Spot 1</a></li>
+                    <!-- /ko -->
                 </ul>
             </div>
         </div>
@@ -48,6 +48,7 @@
     <div id="map"></div>
     <script type="text/javascript">
         var map;
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
@@ -73,16 +74,15 @@
             })
         }
     </script>
-    <!-- VPN -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Epm4Dc9D939EtOux_OddrVhXuNidMf4&callback=initMap">
-    </script>
+    <!-- Aboard -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Epm4Dc9D939EtOux_OddrVhXuNidMf4&callback=initMap"></script>
     <!-- In china -->
     <!-- <script async defer src="http://maps.google.cn/maps/api/js?key=AIzaSyB2Epm4Dc9D939EtOux_OddrVhXuNidMf4&callback=initMap">
 </script> -->
-
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>

@@ -65,7 +65,8 @@ var ViewModel = function() {
         var iptVal = $('#inputFilter').val();
         // set show
         for (var i = 0; i < self.universityList.length; i++) {
-            self.universityList[i].title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
+            var title = self.universityList[i].title.toLowerCase();
+            title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
         }
     };
 };

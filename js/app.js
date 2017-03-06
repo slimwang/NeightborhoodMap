@@ -49,18 +49,25 @@ var universities = [
     }
 ];
 
+var University = function(data) {
+    this.position = data.position;
+    this.title = data.title;
+    this.show = ko.observable(true);
+}
+
 var ViewModel = function() {
-
-    // universities.forEach(function(university) {
-    //     // console.log(university.title);
-    //
-    //     var marker = new google.maps.Marker({
-    //         position: university.position,
-    //         map: map,
-    //         title: university.title
-    //     });
-    // });
-
+    var self = this;
+    self.universityList = [];
+    universities.forEach(function(u) {
+        self.universityList.push(new University(u));
+    });
+    self.toggleVisibility = function() {
+        var iptVal = $('#inputFilter').val();
+        // set show
+        for (var i = 0; i < self.universityList.length; i++) {
+            self.universityList[i].title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
+        }
+    };
 };
 
 ko.applyBindings(new ViewModel());

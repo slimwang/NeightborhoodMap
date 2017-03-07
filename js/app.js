@@ -53,7 +53,7 @@ var University = function(data) {
     this.position = data.position;
     this.title = data.title;
     this.show = ko.observable(true);
-}
+};
 
 var ViewModel = function() {
     var self = this;
@@ -73,9 +73,20 @@ var ViewModel = function() {
     };
     // autoComplete
     self.autoCom = function(data) {
-        console.log("clicked");
         $('#inputFilter').val(data.title);
     };
+    // marker filter
+    self.markerFilter = function(data) {
+        for (var i = 0; i < markers.length; i++) {
+            if (markers[i].title != $('#inputFilter').val()) {
+                markers[i].setMap(null);
+            } else {
+                markers[i].setMap(map);
+            }
+        }
+    };
+
+
 };
 
 ko.applyBindings(new ViewModel());

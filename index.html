@@ -35,7 +35,7 @@
                             <div class="input-group">
                                 <input id="inputFilter" type="text" class="form-control" data-bind="event:{ keyup: toggleVisibility }" placeholder="University's Name">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                                  <button class="btn btn-default" type="button" data-bind="event: { click: markerFilter }"><span class="glyphicon glyphicon-filter"></span>Filter</button>
                                 </span>
                             </div>
                             <!-- /input-group -->
@@ -43,7 +43,7 @@
                         <!-- /.col-lg-6 -->
                     </li>
                     <!-- ko foreach: universityList -->
-                    <li><a href="#" data-bind="event:{ click: $parent.autoCom }, text: $data.title, visible: $data.show"></a></li>
+                    <li><a href="#" data-bind="event: { click: $parent.autoCom }, text: $data.title, visible: $data.show"></a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -54,6 +54,7 @@
     <div id="map"></div>
     <script type="text/javascript">
         var map;
+        var markers = [];
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -70,6 +71,7 @@
                     map: map,
                     title: university.title
                 });
+                markers.push(marker);
             });
             // var hebut = {
             //     lat: 39.178595,

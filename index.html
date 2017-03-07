@@ -43,7 +43,7 @@
                         <!-- /.col-lg-6 -->
                     </li>
                     <!-- ko foreach: universityList -->
-                    <li><a href="#" data-bind="text: $data.title, visible: $data.show"></a></li>
+                    <li><a href="#" data-bind="event:{ click: $parent.autoCom }, text: $data.title, visible: $data.show"></a></li>
                     <!-- /ko -->
                 </ul>
             </div>

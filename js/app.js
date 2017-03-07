@@ -57,10 +57,12 @@ var University = function(data) {
 
 var ViewModel = function() {
     var self = this;
+    // init universityList
     self.universityList = [];
     universities.forEach(function(u) {
         self.universityList.push(new University(u));
     });
+    // list filter
     self.toggleVisibility = function() {
         var iptVal = $('#inputFilter').val();
         // set show
@@ -68,6 +70,11 @@ var ViewModel = function() {
             var title = self.universityList[i].title.toLowerCase();
             title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
         }
+    };
+    // autoComplete
+    self.autoCom = function(data) {
+        console.log("clicked");
+        $('#inputFilter').val(data.title);
     };
 };
 

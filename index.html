@@ -43,7 +43,9 @@
                         <!-- /.col-lg-6 -->
                     </li>
                     <!-- ko foreach: universityList -->
-                    <li><a href="#" data-bind="event: { click: $parent.autoCom }, text: $data.title, visible: $data.show"></a></li>
+                    <li>
+                        <a href="#" data-bind="event: { click: $parent.autoComplete }, text: $data.title, visible: $data.show"></a>
+                    </li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -64,7 +66,7 @@
                 },
                 zoom: 11
             });
-
+            // add markers list
             universities.forEach(function(university) {
                 var marker = new google.maps.Marker({
                     position: university.position,
@@ -73,6 +75,19 @@
                 });
                 markers.push(marker);
             });
+            // markers animate
+            markers.forEach(function(m) {
+                m.addListener('click', toggleBounce);
+
+                function toggleBounce() {
+                    if (m.getAnimation() !== null) {
+                        m.setAnimation(null);
+                    } else {
+                        m.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                }
+            });
+
             // var hebut = {
             //     lat: 39.178595,
             //     lng: 117.173422

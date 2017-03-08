@@ -71,9 +71,10 @@ var ViewModel = function() {
             title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
         }
     };
-    // autoComplete
-    self.autoCom = function(data) {
+    // auto Complete when a li clicked
+    self.autoComplete = function(data) {
         $('#inputFilter').val(data.title);
+        self.markerAnimate(data);
     };
     // marker filter
     self.markerFilter = function(data) {
@@ -84,6 +85,19 @@ var ViewModel = function() {
                 markers[i].setMap(map);
             }
         }
+    };
+    // marker animate
+    self.markerAnimate = function(data) {
+        var i = markers.findIndex(function(m) {
+            return m.title == data.title;
+        });
+        var m = markers[i];
+        if (m.getAnimation() !== null) {
+            m.setAnimation(null);
+        } else {
+            m.setAnimation(google.maps.Animation.BOUNCE);
+        }
+        console.log(i);
     };
 
 

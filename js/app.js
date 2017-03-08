@@ -75,6 +75,8 @@ var ViewModel = function() {
     self.autoComplete = function(data) {
         $('#inputFilter').val(data.title);
         self.markerAnimate(data);
+        self.getInfo(data);
+        self.markerAnimate(data);
     };
     // marker filter
     self.markerFilter = function(data) {
@@ -97,8 +99,36 @@ var ViewModel = function() {
         } else {
             m.setAnimation(google.maps.Animation.BOUNCE);
         }
-        console.log(i);
     };
+    // get ajax info and show it
+    self.getInfo = function(data) {
+        var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + data.title + '&format=json&callback=wikiCallback';
+
+        // AJAX
+        $.ajax({
+            url: wikiUrl,
+            dataType: "jsonp",
+            success: function(response) {
+                var info = response[2][0];
+                // console.log(response[2][0]);
+                info = info.replace(/\([^\)]*\)/g, ""); // info format
+
+                // marker infowindow
+                var infowindow = new google.maps.InfoWindow({
+                    content: info
+                });
+                var i = markers.findIndex(function(m) {
+                    return m.title == data.title;
+                });
+                var m = markers[i];
+                m.addListener('click', function() {
+                    infowindow.open(map, m);
+                });
+            }
+        });
+
+    };
+
 
 
 };

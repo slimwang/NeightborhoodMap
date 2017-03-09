@@ -70,13 +70,15 @@ var ViewModel = function() {
             var title = self.universityList[i].title.toLowerCase();
             title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
         }
+        ko.onError = function(error) {
+            alert("An error occured with knockout.js");
+        };
     };
-    // auto Complete when a li clicked
+    // auto Complete
     self.autoComplete = function(data) {
         $('#inputFilter').val(data.title);
         self.markerAnimate(data);
         self.getInfo(data);
-        self.markerAnimate(data);
     };
     // marker filter
     self.markerFilter = function(data) {
@@ -94,11 +96,7 @@ var ViewModel = function() {
             return m.title == data.title;
         });
         var m = markers[i];
-        if (m.getAnimation() !== null) {
-            m.setAnimation(null);
-        } else {
-            m.setAnimation(google.maps.Animation.BOUNCE);
-        }
+        m.setAnimation(google.maps.Animation.BOUNCE);
     };
     // get ajax info and show it
     self.getInfo = function(data) {
@@ -124,6 +122,10 @@ var ViewModel = function() {
                 m.addListener('click', function() {
                     infowindow.open(map, m);
                 });
+                infowindow.open(map, m);
+            },
+            fail: function(jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
             }
         });
 

@@ -30,5 +30,8 @@ function initMap() {
             }
         }
     });
+}
 
+function mapErrorHandler() {
+    console.log("Something went wrong with google map API.");
 }

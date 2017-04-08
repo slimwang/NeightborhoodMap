@@ -77,17 +77,6 @@ var ViewModel = function() {
         var iptVal = $('#inputFilter').val();
         self.currentFilter(iptVal);
     };
-    self.toggleVisibility = function() {
-        var iptVal = $('#inputFilter').val();
-        // set show
-        for (var i = 0; i < self.universityList.length; i++) {
-            var title = self.universityList[i].title.toLowerCase();
-            title.indexOf(iptVal) == -1 ? self.universityList[i].show(false) : self.universityList[i].show(true);
-        }
-        ko.onError = function(error) {
-            alert("An error occured with knockout.js");
-        };
-    };
     // auto Complete
     self.autoComplete = function(data) {
         $('#inputFilter').val(data.title);

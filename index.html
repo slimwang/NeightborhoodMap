@@ -33,7 +33,7 @@
                     <li class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
-                                <input id="inputFilter" type="text" class="form-control" data-bind="event:{ keyup: toggleVisibility }" placeholder="University's Name">
+                                <input id="inputFilter" type="text" class="form-control" data-bind="" placeholder="University's Name">
                                 <span class="input-group-btn">
                                   <button class="btn btn-default" type="button" data-bind="click: function() { filter('Tianjin University') }"><span class="glyphicon glyphicon-filter"></span>Filter</button>
                                 </span>
@@ -44,7 +44,7 @@
                     </li>
                     <!-- ko foreach: filterUniversities -->
                     <li>
-                        <a href="#" data-bind="event: { click: $parent.autoComplete }, text: $data.title, visible: $data.show"></a>
+                        <a href="#" data-bind="event: { click: $parent.autoComplete }, text: $data.title"></a>
                     </li>
                     <!-- /ko -->
                 </ul>

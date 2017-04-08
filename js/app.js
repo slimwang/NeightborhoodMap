@@ -58,11 +58,24 @@ var University = function(data) {
 var ViewModel = function() {
     var self = this;
     // init universityList
-    self.universityList = [];
+    self.universityList = ko.observableArray([]);
     universities.forEach(function(u) {
         self.universityList.push(new University(u));
     });
     // list filter
+    // self.currentFilter = ko.observable();
+    // self.filterUniversities = ko.computed(function() {
+    //     if (!self.currentFilter()) {
+    //         return self.universityList();
+    //     } else {
+    //         return ko.utils.arrayFilter(self.universityList(), function(u) {
+    //             return u.title == self.currentFilter();
+    //         });
+    //     }
+    // });
+    // self.filter = function(title) {
+    //     self.currentFilter(title);
+    // };
     self.toggleVisibility = function() {
         var iptVal = $('#inputFilter').val();
         // set show
@@ -108,7 +121,6 @@ var ViewModel = function() {
             dataType: "jsonp",
             success: function(response) {
                 var info = response[2][0];
-                // console.log(response[2][0]);
                 info = info.replace(/\([^\)]*\)/g, ""); // info format
 
                 // marker infowindow
@@ -123,10 +135,9 @@ var ViewModel = function() {
                     infowindow.open(map, m);
                 });
                 infowindow.open(map, m);
-            },
-            fail: function(jqXHR, textStatus) {
-                alert("Request failed: " + textStatus);
             }
+        }).fail(function(jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
         });
 
     };

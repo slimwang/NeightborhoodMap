@@ -44,7 +44,7 @@
                     </li>
                     <!-- ko foreach: filtedUniversities -->
                     <li>
-                        <a href="#" data-bind="event: { click: $parent.autoComplete }, text: $data.title"></a>
+                        <a href="#" data-bind="click: $parent.autoCompleteAndGetInfo, text: $data.title"></a>
                     </li>
                     <!-- /ko -->
                 </ul>

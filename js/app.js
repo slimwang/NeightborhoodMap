@@ -63,19 +63,20 @@ var ViewModel = function() {
         self.universityList.push(new University(u));
     });
     // list filter
-    // self.currentFilter = ko.observable();
-    // self.filterUniversities = ko.computed(function() {
-    //     if (!self.currentFilter()) {
-    //         return self.universityList();
-    //     } else {
-    //         return ko.utils.arrayFilter(self.universityList(), function(u) {
-    //             return u.title == self.currentFilter();
-    //         });
-    //     }
-    // });
-    // self.filter = function(title) {
-    //     self.currentFilter(title);
-    // };
+    self.currentFilter = ko.observable();
+    self.filterUniversities = ko.computed(function() {
+        if (!self.currentFilter()) {
+            return self.universityList();
+        } else {
+            return ko.utils.arrayFilter(self.universityList(), function(u) {
+                return u.title == self.currentFilter();
+            });
+        }
+    });
+    self.filter = function(title) {
+        var iptVal = $('#inputFilter').val();
+        self.currentFilter(iptVal);
+    };
     self.toggleVisibility = function() {
         var iptVal = $('#inputFilter').val();
         // set show

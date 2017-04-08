@@ -35,14 +35,14 @@
                             <div class="input-group">
                                 <input id="inputFilter" type="text" class="form-control" data-bind="event:{ keyup: toggleVisibility }" placeholder="University's Name">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default" type="button" data-bind="event: { click: markerFilter }"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                                  <button class="btn btn-default" type="button" data-bind="click: function() { filter('Tianjin University') }"><span class="glyphicon glyphicon-filter"></span>Filter</button>
                                 </span>
                             </div>
                             <!-- /input-group -->
                         </div>
                         <!-- /.col-lg-6 -->
                     </li>
-                    <!-- ko foreach: universityList -->
+                    <!-- ko foreach: filterUniversities -->
                     <li>
                         <a href="#" data-bind="event: { click: $parent.autoComplete }, text: $data.title, visible: $data.show"></a>
                     </li>

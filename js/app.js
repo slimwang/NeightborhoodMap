@@ -54,7 +54,6 @@ var University = function(data) {
     this.title = data.title;
     this.show = ko.observable(true);
 };
-
 var ViewModel = function() {
     var self = this;
     // init universityList
@@ -64,7 +63,7 @@ var ViewModel = function() {
     });
     // list filter
     self.currentFilter = ko.observable();
-    self.filterUniversities = ko.computed(function() {
+    self.filtedUniversities = ko.computed(function() {
         if (!self.currentFilter()) {
             return self.universityList();
         } else {
@@ -76,22 +75,27 @@ var ViewModel = function() {
     self.filter = function(title) {
         var iptVal = $('#inputFilter').val();
         self.currentFilter(iptVal);
+        self.markerFilter(iptVal);
+    };
+    // marker filter
+    self.markerFilter = function(title) {
+        if (!self.currentFilter()) {
+            markers.forEach(function(m) {
+                m.setMap(map);
+            });
+        } else {
+            markers.forEach(function(m) {
+                if (m.title != title) {
+                    m.setMap(null);
+                } else {
+                    m.setMap(map);
+                }
+            });
+        }
     };
     // auto Complete
     self.autoComplete = function(data) {
         $('#inputFilter').val(data.title);
-        self.markerAnimate(data);
-        self.getInfo(data);
-    };
-    // marker filter
-    self.markerFilter = function(data) {
-        for (var i = 0; i < markers.length; i++) {
-            if (markers[i].title != $('#inputFilter').val()) {
-                markers[i].setMap(null);
-            } else {
-                markers[i].setMap(map);
-            }
-        }
     };
     // marker animate
     self.markerAnimate = function(data) {

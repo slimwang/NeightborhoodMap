@@ -96,19 +96,8 @@ var ViewModel = function() {
     // auto Complete
     self.autoCompleteAndGetInfo = function(data) {
         $('#inputFilter').val(data.title);
-        self.getInfo(data);
-    };
-    // marker animate
-    self.markerAnimate = function(data) {
-        var i = markers.findIndex(function(m) {
-            return m.title == data.title;
-        });
-        var m = markers[i];
-        m.setAnimation(google.maps.Animation.BOUNCE);
-    };
-    // get ajax info and show it
-    self.getInfo = function(data) {
         getAjaxInfo(data.title);
+        toggleBounce(data.title);
     };
 
 };

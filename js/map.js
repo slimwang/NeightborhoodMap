@@ -22,15 +22,8 @@ function initMap() {
     markers.forEach(function(m) {
         m.addListener('click', function() {
             getAjaxInfo(m.title);
-});
-        // m.addListener('click', toggleBounce);
-        // function toggleBounce() {
-        //     if (m.getAnimation() !== null) {
-        //         m.setAnimation(null);
-        //     } else {
-        //         m.setAnimation(google.maps.Animation.BOUNCE);
-        //     }
-        // }
+            toggleBounce(m.title);
+        });
     });
 }
 
@@ -58,6 +51,18 @@ function getAjaxInfo(title) {
     }).fail(function(jqXHR, textStatus) {
         alert("Request failed: " + textStatus);
     });
+}
+// marker animate
+function toggleBounce(title) {
+    var i = markers.findIndex(function(m) {
+        return m.title == title;
+    });
+    var m = markers[i];
+    if (m.getAnimation() !== null) {
+            m.setAnimation(null);
+        } else {
+            m.setAnimation(google.maps.Animation.BOUNCE);
+        }
 }
 
 function mapErrorHandler() {

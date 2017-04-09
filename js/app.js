@@ -68,7 +68,10 @@ var ViewModel = function() {
             return self.universityList();
         } else {
             return ko.utils.arrayFilter(self.universityList(), function(u) {
-                return u.title == self.currentFilter();
+                var title = u.title.toLowerCase();
+                var currentFilter = self.currentFilter().toLowerCase();
+                if(title.indexOf(currentFilter) != -1) { return true; }
+                return false;
             });
         }
     });
@@ -85,7 +88,8 @@ var ViewModel = function() {
             });
         } else {
             markers.forEach(function(m) {
-                if (m.title != title) {
+                var mTitle = m.title.toLowerCase();
+                if (mTitle.indexOf(title) == -1) {
                     m.setMap(null);
                 } else {
                     m.setMap(map);

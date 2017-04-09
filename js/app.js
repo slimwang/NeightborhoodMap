@@ -85,15 +85,15 @@ var ViewModel = function() {
     self.markerFilter = function(title) {
         if (!self.currentFilter()) {
             markers.forEach(function(m) {
-                m.setMap(map);
+                m.setVisible(true);
             });
         } else {
             markers.forEach(function(m) {
                 var mTitle = m.title.toLowerCase();
                 if (mTitle.indexOf(title.toLowerCase()) == -1) {
-                    m.setMap(null);
+                    m.setVisible(false);
                 } else {
-                    m.setMap(map);
+                    m.setVisible(true);
                 }
             });
         }

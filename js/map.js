@@ -1,5 +1,6 @@
 var map;
 var markers = [];
+var infowindow;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -9,6 +10,8 @@ function initMap() {
         },
         zoom: 11
     });
+    // infowindow
+    infowindow = new google.maps.InfoWindow();
     // add markers list
     universities.forEach(function(university) {
         var marker = new google.maps.Marker({
@@ -39,17 +42,16 @@ function getAjaxInfo(title) {
             info = info.replace(/\([^\)]*\)/g, ""); // info format
 
             // marker infowindow
-            var infowindow = new google.maps.InfoWindow({
-                content: info
-            });
             var i = markers.findIndex(function(m) {
                 return m.title == title;
             });
             var m = markers[i];
+            infowindow.setContent(info);
             infowindow.open(map, m);
+        },
+        error: function(jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
         }
-    }).fail(function(jqXHR, textStatus) {
-        alert("Request failed: " + textStatus);
     });
 }
 // marker animate
@@ -59,9 +61,11 @@ function setBounce(title) {
     });
     var m = markers[i];
     m.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ m.setAnimation(null); }, 750);
+    setTimeout(function() {
+        m.setAnimation(null);
+    }, 750);
 }
 
 function mapErrorHandler() {
-    $("#map").text("Something went wrong with google map API.");
+    alert("Something went wrong with google map API.");
 }

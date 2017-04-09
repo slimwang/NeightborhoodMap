@@ -89,7 +89,7 @@ var ViewModel = function() {
         } else {
             markers.forEach(function(m) {
                 var mTitle = m.title.toLowerCase();
-                if (mTitle.indexOf(title) == -1) {
+                if (mTitle.indexOf(title.toLowerCase()) == -1) {
                     m.setMap(null);
                 } else {
                     m.setMap(map);

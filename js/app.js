@@ -100,7 +100,7 @@ var ViewModel = function() {
     };
     // auto Complete
     self.autoCompleteAndGetInfo = function(data) {
-        $('#inputFilter').val(data.title);
+        self.iptVal(data.title);
         getAjaxInfo(data.title);
         setBounce(data.title);
     };

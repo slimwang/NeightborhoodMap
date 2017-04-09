@@ -97,7 +97,7 @@ var ViewModel = function() {
     self.autoCompleteAndGetInfo = function(data) {
         $('#inputFilter').val(data.title);
         getAjaxInfo(data.title);
-        toggleBounce(data.title);
+        setBounce(data.title);
     };
 
 };

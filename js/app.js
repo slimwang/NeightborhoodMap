@@ -75,8 +75,9 @@ var ViewModel = function() {
             });
         }
     });
+    self.iptVal = ko.observable();
     self.filter = function(title) {
-        var iptVal = $('#inputFilter').val();
+        var iptVal = self.iptVal();
         self.currentFilter(iptVal);
         self.markerFilter(iptVal);
     };
